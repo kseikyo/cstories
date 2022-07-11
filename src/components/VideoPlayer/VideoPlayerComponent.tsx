@@ -50,6 +50,7 @@ export const VideoPlayerComponent = forwardRef<
             </div>
         `;
       if (modal) {
+        // eslint-disable-next-line no-param-reassign
         modal.contentEl().innerHTML = htmlTemplate;
       }
     };
@@ -152,6 +153,7 @@ export const VideoPlayerComponent = forwardRef<
   // @ts-ignore
   return (
     <video
+      // @ts-ignore
       ref={onVideo}
       id="video"
       className="video-js bg-cover !min-h-full !min-w-full aspect-video"

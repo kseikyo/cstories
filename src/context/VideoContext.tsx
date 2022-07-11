@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 import {
   createContext,
   ReactNode,
@@ -7,6 +8,8 @@ import {
   useEffect,
   useState,
 } from "react";
+
+import { SelectedVideoType } from "@src/components/VideoPlayer";
 
 interface VideoContextType {
   selections: string[];
@@ -20,7 +23,6 @@ const VideoProvider = ({ children }: { children: ReactNode }) => {
   const [mounted, setMounted] = useState(false);
   const [selections, setSelections] = useState<string[]>([""]);
   const [selectedVideo, setSelectedVideo] = useState<SelectedVideoType>();
-
   const [videoEl, setVideoEl] = useState(null);
   const onVideo = useCallback((el: SetStateAction<null>) => {
     setVideoEl(el);

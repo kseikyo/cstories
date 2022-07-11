@@ -41,7 +41,7 @@ export const VideoPlayerWrapper: FC<IVideoPlayerWrapperProps> = ({
     setSelections((oldSelections) => [...oldSelections, selectedVideo.url]);
   };
 
-  async function nextChunk(data: string) {
+  async function nextChunk(_data: string) {
     // @FIXME: THIS ARCHITECTURE WILL ONLY WORK WITH ONE STORY
     // const key = data.toLowerCase();
     const videoElement = videoEl as unknown as HTMLVideoElement;
@@ -77,7 +77,9 @@ export const VideoPlayerWrapper: FC<IVideoPlayerWrapperProps> = ({
       <VideoPlayerComponent
         options={options}
         videoEl={videoEl}
+        // @ts-ignore
         ref={onVideo}
+        // @ts-ignore
         modal={modal}
         setModal={setModal}
       />
