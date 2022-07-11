@@ -24,21 +24,21 @@ function initializeCodec() {
   // );
 }
 
-async function nextChunk(data: string) {
+async function nextChunk(_data: string) {
   // @FIXME: THIS ARCHITECTURE WILL ONLY WORK WITH ONE STORY
   // const key = data.toLowerCase();
-  const videoElement = document.getElementById(
-    "video",
-  ) as unknown as HTMLVideoElement;
+  // const videoElement = document.getElementById(
+  //   "video",
+  // ) as unknown as HTMLVideoElement;
   // @TODO: MAKE API CALL TO DB TO GET VIDEO INFO
   // const selected = this.manifestJSON[key];
-  const selected = {
-    url: "//vjs.zencdn.net/v/oceans.mp4",
-    showOptionsAt: parseInt(`${videoElement.currentTime + 20}`, 10),
-    options: ["Go Caving", "Collect Wood"],
-    defaultOption: "Go Caving",
-    videoDuration: 46.613333,
-  };
+  // const selected = {
+  //   url: "//vjs.zencdn.net/v/oceans.mp4",
+  //   showOptionsAt: parseInt(`${videoElement.currentTime + 20}`, 10),
+  //   options: ["Go Caving", "Collect Wood"],
+  //   defaultOption: "Go Caving",
+  //   videoDuration: 46.613333,
+  // };
   // this.selected = {
   //   ...selected,
   //   // Adjusts time modal will show up, based on currentTime
@@ -49,14 +49,14 @@ async function nextChunk(data: string) {
   // await this.fileDownload(selected.url);
 }
 
-const manageLag = () => {
-    if (!!~this.selections.indexOf(selected.url)) {
-      selected.at += 4;
-      return;
-    }
+// const manageLag = () => {
+//     if (~this.selections.indexOf(selected.url)) {
+//       selected.at += 4;
+//       return;
+//     }
 
-    this.selections.push(selected.url);
-}
+//     this.selections.push(selected.url);
+// }
 
 export const initApp = () => {
   if (!window) return;

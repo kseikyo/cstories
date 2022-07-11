@@ -85,6 +85,7 @@ export const VideoPlayerComponent = forwardRef<
         player.dispose();
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [options, videoEl]);
 
   useEffect(() => {
@@ -98,6 +99,7 @@ export const VideoPlayerComponent = forwardRef<
         });
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoPlayer]);
   // if (player.current) {
   //   console.log("initializing modal");
