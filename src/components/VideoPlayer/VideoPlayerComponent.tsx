@@ -33,7 +33,6 @@ export const VideoPlayerComponent = forwardRef<
   IVideoPlayerProps
 >(({ options, videoEl, modal, setModal }, onVideo) => {
   const [videoPlayer, setVideoPlayer] = useState<VideoJsPlayer>();
-
   const getModalTemplate = (modalOptions: [string, string]) => {
     return () => {
       const [option1, option2] = modalOptions;
@@ -64,7 +63,7 @@ export const VideoPlayerComponent = forwardRef<
   };
 
   useEffect(() => {
-    if (videoEl == null) return;
+    if (!videoEl) return;
     const player = videojs(videoEl, { ...initialOptions, ...options });
     if (player) {
       setVideoPlayer(player);
@@ -152,7 +151,6 @@ export const VideoPlayerComponent = forwardRef<
   //   }
   // }, [videoEl.currentTime])
 
-  // @ts-ignore
   return (
     <video
       // @ts-ignore

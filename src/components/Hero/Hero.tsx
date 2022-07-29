@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Popover } from "@headlessui/react";
 import axios from "axios";
@@ -16,16 +16,26 @@ type Inputs = {
   email: string;
 };
 
-const videoJsOptions = {
-  sources: [
-    {
-      src: "//vjs.zencdn.net/v/oceans.mp4",
-      type: "video/mp4",
-    },
-  ],
-};
+// const videoJsOptions = {
+//   sources: [
+//     {
+//       src: "//vjs.zencdn.net/v/oceans.mp4",
+//       type: "video/mp4",
+//     },
+//   ],
+// };
 
 export const Hero = () => {
+  const [mounted, setMounted] = useState(false);
+  const [currentUrl, setCurrentUrl] = useState("");
+  const [videoJsOptions, setVideoJsOptions] = useState({
+    sources: [
+      {
+        src: "https://gateway.storjshare.io/cstories/02.caving.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=jw3a7iexmkp6rmlvq2epovji4brq%2F20220725%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220725T201041Z&X-Amz-Expires=900&X-Amz-Signature=907d0faa4ef047d48840e70c10bd5068f30ec2ca2b85ef6e0cdb2036fee1c68f&X-Amz-SignedHeaders=host",
+        type: "video/mp4",
+      },
+    ],
+  });
   const {
     register,
     handleSubmit,
@@ -49,6 +59,25 @@ export const Hero = () => {
       }
     }
   };
+
+  useEffect(() => {
+    const getFiles = async () => {
+      const { data } = await axios.get("/api/s3");
+      setCurrentUrl(data?.url);
+      setVideoJsOptions({
+        sources: [
+          {
+            src: data?.url,
+            type: "video/mp4",
+          },
+        ],
+      });
+    };
+    setMounted(true);
+    if (mounted) {
+      getFiles();
+    }
+  }, [mounted]);
 
   return (
     <div className="relative bg-white overflow-hidden">
@@ -319,7 +348,10 @@ export const Hero = () => {
                   Proof of concept
                 </span>
                 <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
-                  <VideoPlayerWrapper options={videoJsOptions} />
+                  <VideoPlayerWrapper
+                    options={videoJsOptions}
+                    currentVideoSrc={currentUrl}
+                  />
                 </div>
               </div>
             </div>

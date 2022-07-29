@@ -14,10 +14,12 @@ export type SelectedVideoType = {
 
 interface IVideoPlayerWrapperProps {
   options: videojs.PlayerOptions;
+  currentVideoSrc?: string;
 }
 
 export const VideoPlayerWrapper: FC<IVideoPlayerWrapperProps> = ({
   options,
+  currentVideoSrc = "",
 }) => {
   const [mounted, setMounted] = useState(false);
   const [selections, setSelections] = useState<string[]>([""]);
@@ -42,13 +44,12 @@ export const VideoPlayerWrapper: FC<IVideoPlayerWrapperProps> = ({
   };
 
   async function nextChunk(_data: string) {
-    // @FIXME: THIS ARCHITECTURE WILL ONLY WORK WITH ONE STORY
     // const key = data.toLowerCase();
     const videoElement = videoEl as unknown as HTMLVideoElement;
     // @TODO: MAKE API CALL TO DB TO GET VIDEO INFO
     // const selected = this.manifestJSON[key];
     const selected: SelectedVideoType = {
-      url: "//vjs.zencdn.net/v/oceans.mp4",
+      url: currentVideoSrc,
       showOptionsAt: parseInt(`${videoElement.currentTime + 20}`, 10),
       options: ["Go Caving", "Collect Wood"],
       defaultOption: "Go Caving",
