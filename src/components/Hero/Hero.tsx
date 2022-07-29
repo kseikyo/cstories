@@ -56,6 +56,12 @@ export const Hero = () => {
           message: "This email has already been registered.",
           type: "custom",
         });
+      } else {
+        setError("email", {
+          // @ts-ignore
+          message: err?.response.data.message ?? "Something went wrong.",
+          type: "custom",
+        });
       }
     }
   };
