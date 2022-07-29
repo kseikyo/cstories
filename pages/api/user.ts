@@ -30,7 +30,7 @@ export default async function handle(
         // Create a new user
         const { email, name, onEmailList } = req.body;
         const user = await createUser({ email, name, onEmailList });
-        return res.json(user);
+        return res.status(200).json(user);
       }
       case "PUT": {
         // Update an existing user
